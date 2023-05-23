@@ -84,35 +84,36 @@ class Email extends BaseController
         }
     }
 
-
-
     public function edit($id)
     {
-        helper('form');
-
-        // Retrieve the email record by ID
-        $emailModel = new EmailModel();
-        $email = $emailModel->get_email($id);
+        $model = model(EmailModel::class);
+        $email = $model->get_email_by_id($id);
 
         if (empty($email)) {
-            // Email not found, show error or redirect to error page
-            return redirect()->to('email')->with('error', 'Email not found.');
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the email: ' . $id);
         }
 
-        // Check if the form is submitted.
-        if (! $this->request->getMethod() === 'post') {
-            // The form is not submitted, so return the form.
-            return view('templates/header', ['title' => 'Edit Email'])
-                . view('email/email_edit', ['email' => $email])
-                . view('templates/footer');
-        }
+        // Pass the email data to the view for editing
+        $data = [
+            'email' => $email,
+        ];
 
+        return view('templates/header', $data)
+            . view('email/email_edit', $data)
+            . view('templates/footer');
+    }
+
+    public function update($id)
+    {
+        $model = model(EmailModel::class);
+    
+        // Retrieve the updated data from the form
         $data = [
             'sender_email' => $this->request->getPost('sender_email'),
             'receiver_email' => $this->request->getPost('receiver_email'),
             'message' => $this->request->getPost('message')
         ];
-
+    
         // Perform validation
         if (! $this->validate([
             'sender_email' => 'required|valid_email',
@@ -120,34 +121,33 @@ class Email extends BaseController
             'message' => 'required'
         ])) {
             // Validation failed, so return the form with errors.
-            return view('templates/header', ['title' => 'Edit Email'])
-                . view('email/email_edit', ['email' => $email, 'validation' => $this->validator])
+            return view('templates/header', ['title' => 'Edit email'])
+                . view('email/email_edit', ['validation' => $this->validator, 'email' => $data])
                 . view('templates/footer');
         }
-
-        if ($emailModel->update_email($id, $data)) {
+    
+        // Update the email data in the database
+        if ($model->update($id, $data)) {
             // Email updated successfully.
-            return redirect()->to('email');
+            return redirect()->to('/email/view');
         } else {
             // Failed to update email.
             $data['error'] = 'Failed to update email.';
-            return view('templates/header', ['title' => 'Edit Email'])
+            return view('templates/header', ['title' => 'Edit email'])
                 . view('email/email_edit', $data)
                 . view('templates/footer');
         }
     }
+    
 
     public function delete($id)
     {
-        $emailModel = new EmailModel();
+        $model = model(EmailModel::class);
 
-        if ($emailModel->delete_email($id)) {
-            // Email deleted successfully.
-            return redirect()->to('email');
-        } else {
-            // Failed to delete email.
-            return redirect()->to('email')->with('error', 'Failed to delete email.');
-        }
+        // Delete the email from the database
+        $model->delete($id);
+
+        return redirect()->to('/email/view');
     }
 
 

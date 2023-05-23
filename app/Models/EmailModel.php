@@ -19,17 +19,22 @@ class EmailModel extends Model
         return $this->db->get('email')->result_array();
     }
 
-    public function get_email_by_id($id) {
-        return $this->db->get_where('email', array('id' => $id))->row_array();
+    public function get_email_by_id($id)
+    {
+        return $this->where('id', $id)
+                    ->get()
+                    ->getRowArray();
     }
 
-    public function update_email($id, $data) {
-        $this->db->where('id', $id);
-        return $this->db->update('email', $data);
+
+    public function update_email($id, $data)
+    {
+        return $this->db->table('email')->where('id', $id)->update($data);
     }
 
-    public function delete_email($id) {
-        $this->db->where('id', $id);
-        return $this->db->delete('email');
+    public function delete_email($id)
+    {
+        return $this->db->table('email')->where('id', $id)->delete();
     }
+
 }

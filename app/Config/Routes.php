@@ -33,6 +33,7 @@ $routes->get('/', 'Home::index');
 
 use App\Controllers\News;
 use App\Controllers\Pages;
+use App\Controllers\Email;
 
 $routes->match(['get', 'post'], 'news/create', [News::class, 'create']);
 $routes->get('news/(:segment)', [News::class, 'view']);
@@ -40,13 +41,14 @@ $routes->get('news', [News::class, 'index']);
 $routes->get('pages', [Pages::class, 'index']);
 $routes->get('(:segment)', [Pages::class, 'view']);
 
-use App\Controllers\Email;
-
 $routes->get('email', [Email::class, 'index']);
 $routes->match(['get', 'post'], 'email/create', [Email::class, 'create']);
-$routes->match(['get', 'post'], 'email/edit/(:num)', [Email::class, 'edit/$1']);
-$routes->get('email/delete/(:num)', [Email::class, 'delete/$1']);
 $routes->get('email/view', [Email::class, 'view']);  // Updated route for viewing all emails
+
+$routes->get('email/edit/(:num)', 'Email::edit/$1');
+$routes->post('email/update/(:num)', 'Email::update/$1');
+$routes->get('email/delete/(:num)', 'Email::delete/$1');
+$routes->post('email/delete/(:num)', 'Email::confirmDelete/$1');
 
 
 
