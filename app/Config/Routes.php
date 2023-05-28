@@ -45,10 +45,15 @@ $routes->get('email', [Email::class, 'index']);
 $routes->match(['get', 'post'], 'email/create', [Email::class, 'create']);
 $routes->get('email/view', [Email::class, 'view']);  // Updated route for viewing all emails
 
+
+// lab 3
 $routes->get('email/edit/(:num)', 'Email::edit/$1');
 $routes->post('email/update/(:num)', 'Email::update/$1');
 $routes->get('email/delete/(:num)', 'Email::delete/$1');
 $routes->post('email/delete/(:num)', 'Email::confirmDelete/$1');
+
+// lab 4
+$routes->get('lucky-number', 'LuckyNumber::index');
 
 
 
