@@ -8,6 +8,6 @@ class LuckyNumber extends BaseController
     {
         $data['luckyNumber'] = mt_rand(222, 456);
 
-        return view('lucky/lucky_number', $data);
+        return view('lab4/lucky_number', $data);
     }
 }

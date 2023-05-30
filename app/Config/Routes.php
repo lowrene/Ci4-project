@@ -31,6 +31,16 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+use App\Controllers\LuckyNumber;
+use App\Controllers\Table;
+$routes->get('lucky-number', [LuckyNumber::class, 'index']);
+
+$routes->get('table-alternative-row-bg', [Table::class, 'index']);
+
+$routes->get('credit-card', 'CreditCard::index');
+$routes->match(['get', 'post'], 'credit-card/store', 'CreditCard::store');
+
+
 use App\Controllers\News;
 use App\Controllers\Pages;
 use App\Controllers\Email;
@@ -52,8 +62,7 @@ $routes->post('email/update/(:num)', 'Email::update/$1');
 $routes->get('email/delete/(:num)', 'Email::delete/$1');
 $routes->post('email/delete/(:num)', 'Email::confirmDelete/$1');
 
-// lab 4
-$routes->get('lucky-number', 'LuckyNumber::index');
+
 
 
 

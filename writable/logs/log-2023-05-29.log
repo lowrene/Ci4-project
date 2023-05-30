@@ -1,0 +1,28 @@
+CRITICAL - 2023-05-29 10:49:12 --> Invalid file: "credit_card_form.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('credit_card_form.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('credit_card_form', [], true)
+ 3 APPPATH\Controllers\CreditCard.php(11): view('credit_card_form')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\CreditCard->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CreditCard))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\lowre\\Desktop\\SIT\\y1tri3\\CSC1106\\Ci4-project\\public\\index.php')
+CRITICAL - 2023-05-29 10:49:40 --> The action you requested is not allowed.
+in SYSTEMPATH\Security\Security.php on line 306.
+ 1 SYSTEMPATH\Security\Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH\Filters\CSRF.php(55): CodeIgniter\Security\Security->verify(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 SYSTEMPATH\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 4 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('credit-card/store', 'before')
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\lowre\\Desktop\\SIT\\y1tri3\\CSC1106\\Ci4-project\\public\\index.php')
+CRITICAL - 2023-05-29 10:50:50 --> The action you requested is not allowed.
+in SYSTEMPATH\Security\Security.php on line 306.
+ 1 SYSTEMPATH\Security\Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH\Filters\CSRF.php(55): CodeIgniter\Security\Security->verify(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 SYSTEMPATH\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 4 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('credit-card/store', 'before')
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\lowre\\Desktop\\SIT\\y1tri3\\CSC1106\\Ci4-project\\public\\index.php')
